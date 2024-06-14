@@ -1,0 +1,56 @@
+{
+    "targets": [
+        "water",
+        "translucent",
+        "itemEntity",
+        "particles",
+        "clouds",
+        "weather",
+        "final",
+        "trans",
+        "swap",
+        "previous"
+    ],
+    "passes": [
+        {
+            "name": "sculk_tendrils_before",
+            "intarget": "minecraft:main",
+            "outtarget": "final",
+            "auxtargets": [
+                {
+                    "name": "OverlaySampler",
+                    "id": "sculk_tendrils",
+                    "width": 112.50,
+                    "height": 64,
+                    "bilinear": false
+                },
+                {
+                    "name": "EmissiveOverlaySampler",
+                    "id": "sculk_tendrils_e",
+                    "width": 112.50,
+                    "height": 64,
+                    "bilinear": true
+                }
+            ]
+        },
+        {
+            "name": "vignette",
+            "intarget": "final",
+            "outtarget": "swap",
+            "auxtargets": [
+                {
+                    "name": "VignetteOverlaySampler",
+                    "id": "special_vignette",
+                    "width": 256,
+                    "height": 256,
+                    "bilinear": true
+                }
+            ]
+        },
+        {
+            "name": "blit",
+            "intarget": "swap",
+            "outtarget": "minecraft:main"
+        }
+    ]
+}

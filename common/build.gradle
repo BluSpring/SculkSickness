@@ -1,0 +1,76 @@
+dependencies {
+    // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
+    // Do NOT use other classes from fabric loader
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    // Remove the next line if you don't want to depend on the API
+    modApi "dev.architectury:architectury:${rootProject.architectury_version}"
+
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}")
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/sculksickness.accesswidener")
+}
+
+repositories {
+
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
+
+    maven {
+        url "https://maven.terraformersmc.com/releases/"
+        content {
+            includeGroup "com.terraformersmc"
+        }
+    }
+
+    maven { url "https://www.cursemaven.com" }
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+
+    def environment = System.getenv("ENVIRONMENT");
+    if (environment != "production") {
+        from(rootProject.rootDir.absolutePath + "/testdata") { into 'data' }
+    }
+}
+
+tasks.named("processResources") {
+    inputs.property("environment") {
+        System.getenv("ENVIRONMENT") || null
+    }
+}
+
+architectury {
+    common()
+}
+
+publishing {
+    publications {
+        mavenCommon(MavenPublication) {
+            artifactId = rootProject.archives_base_name
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+    }
+}

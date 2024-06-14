@@ -1,0 +1,8 @@
+{
+  "effect.sculksickness.sculk_sickness": "§3§lSculk Sickness",
+  "death.attack.sculk_corrosion": "%1$s was dissolved by the §3§lSculk Sickness",
+  "text.sculksickness.sickness_stage_warning": "§4§lSickness sets in..§r Stage: §3%d",
+  "text.sculksickness.infected_by.step_on_sculk": "§3§lStrange tendrils§r grasp your legs... Stage: §31",
+  "text.sculksickness.infected_by.break_sculk": "§3§lStrange hums§r start to irradiate your ears... Stage: §31",
+  "text.sculksickness.infected_by.entity_attack": "As the creature attacks, a §3§lstrange feeling§r starts overcome you... Stage: §31"
+}

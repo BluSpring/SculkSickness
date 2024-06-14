@@ -1,0 +1,78 @@
+{
+    "targets": [
+        "water",
+        "translucent",
+        "itemEntity",
+        "particles",
+        "clouds",
+        "weather",
+        "final",
+        "trans",
+        "swap",
+        "previous"
+    ],
+    "passes": [
+        {
+            "name": "sculk_tendrils_after",
+            "intarget": "minecraft:main",
+            "outtarget": "final",
+            "auxtargets": [
+                {
+                    "name": "OverlaySampler",
+                    "id": "sculk_tendrils",
+                    "width": 112.50,
+                    "height": 64,
+                    "bilinear": false
+                },
+                {
+                    "name": "EmissiveOverlaySampler",
+                    "id": "sculk_tendrils_e",
+                    "width": 112.50,
+                    "height": 64,
+                    "bilinear": true
+                }
+            ]
+        },
+        {
+            "name": "vignette",
+            "intarget": "final",
+            "outtarget": "trans",
+            "auxtargets": [
+                {
+                    "name": "VignetteOverlaySampler",
+                    "id": "special_vignette",
+                    "width": 256,
+                    "height": 256,
+                    "bilinear": true
+                }
+            ]
+        },
+        {
+            "name": "phosphor",
+            "intarget": "trans",
+            "outtarget": "swap",
+            "auxtargets": [
+                {
+                    "name": "PrevSampler",
+                    "id": "previous"
+                }
+            ],
+            "uniforms": [
+                {
+                    "name": "Phosphor",
+                    "values": [ 0.95, 0.95, 0.95 ]
+                }
+            ]
+        },
+        {
+            "name": "blit",
+            "intarget": "swap",
+            "outtarget": "previous"
+        },
+        {
+            "name": "blit",
+            "intarget": "swap",
+            "outtarget": "minecraft:main"
+        }
+    ]
+}

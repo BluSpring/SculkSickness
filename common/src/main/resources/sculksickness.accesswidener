@@ -1,0 +1,5 @@
+accessWidener v2 named
+
+# Rendering
+accessible class net/minecraft/client/renderer/FogRenderer$MobEffectFogFunction
+accessible class net/minecraft/client/renderer/FogRenderer$FogData
